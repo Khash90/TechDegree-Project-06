@@ -9,7 +9,7 @@ let numberOfGuesses = 0;
 let phrases = [
     'never give up',
     'hard work works',
-    'the easy way is the hard way',
+    'hard way the way to go',
     'failure equals learning'
 ];
 
@@ -19,7 +19,7 @@ const getRandomPhraseAsArray = arr => {
 
     const randomNumber = Math.floor(Math.random() * phrases.length);
     let phrase = arr[randomNumber];
-    return randomNumber;
+    return phrase;
 
 }
 
