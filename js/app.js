@@ -2,14 +2,14 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
-const ul = document.querySelector('ul');
+const ul = document.querySelector('#phrase ul');
 
 let missed = 0;
 
 let phrases = [
     'never give up',
     'hard work works',
-    'hard way the way to go',
+    'hard way is way to go',
     'failure equals learning'
 ];
 
@@ -98,12 +98,11 @@ const checkWin = () => {
     }
 }
 
+// reseting win or lose
 
-const restartGame = () => {
-    const buttons = document.getElementsByTagName('button');
-    const li = document.querySelectorAll('ul');
-    overlay.className = 'start';
-    
+function restartGame() {
+ 
+
 }
 //listen for the start game button to be pressed
 startButton.addEventListener('click', () => {
