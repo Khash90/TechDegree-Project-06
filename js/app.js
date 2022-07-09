@@ -87,6 +87,7 @@ function resetGame() {
     const buttons = document.querySelectorAll('button');
     const allLi = document.querySelectorAll('li'); // remove all li on html.
     missed = 0;
+    
     allLi.forEach(letter => {
         letter.remove();
     });
@@ -96,12 +97,10 @@ function resetGame() {
         buttons[i].disabled = false;
         buttons[i].className = '';
     } 
-
-    const getHearts = document.querySelectorAll('.tries');
-    for (let i = 0 ; i<getHearts.length ; i++) {
-        getHearts[i].firstElementChild.src = 'images/liveHeart.png';
-    }
-
+    
+    //reseting hearts
+   
+    
 
     
 
