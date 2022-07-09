@@ -4,6 +4,7 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const ul = document.querySelector('#phrase ul');
 
+
 let missed = 0;
 
 let phrases = [
@@ -68,7 +69,9 @@ qwerty.addEventListener('click', e => {
         e.target.className = 'chosen';
 
          let findLetter = checkLetter(e.target);
+
          if (findLetter === null) {
+
             const heartLost = document.querySelectorAll('.tries img')[missed];
             heartLost.src = 'images/lostHeart.png';
             missed++;
@@ -77,6 +80,10 @@ qwerty.addEventListener('click', e => {
       checkWin();
 });
 
+// reseting game
+function resetGame() {
+        
+}
 
 //check if the game has been won or lost
 const checkWin = () => {
@@ -86,24 +93,21 @@ const checkWin = () => {
         overlay.classList.add('win');
         overlay.children[0].textContent = 'You Are Smart !!!';
         overlay.style.display = 'flex';
-        overlay.children[1].textContent = 'Continue'
-        restartGame();
+        overlay.children[1].textContent = 'Continue';
+        
+        
     }else if(missed > 4){
         overlay.classList.add('lose');
         overlay.children[0].textContent = 'Failed, Another try?';
         overlay.style.display = 'flex';
-        overlay.children[1].textContent = 'Restart'
-        restartGame();
+        overlay.children[1].textContent = 'Restart';
         
     }
 }
 
-// reseting win or lose
 
-function restartGame() {
- 
 
-}
+
 //listen for the start game button to be pressed
 startButton.addEventListener('click', () => {
       overlay.style.display = 'none';
