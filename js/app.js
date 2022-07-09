@@ -11,7 +11,9 @@ let phrases = [
     'never give up',
     'hard work works',
     'hard way is way to go',
-    'failure equals learning'
+    'failure equals learning',
+    'jack sparrow',
+    'batman is the best'
 ];
 
 
@@ -62,8 +64,8 @@ const checkLetter = Clicked => {
 }
 
 //listen for the onscreen keyboard to be clicked
-qwerty.addEventListener('click', e => {
-    //    let button = e.target;
+const key = qwerty.addEventListener('click', e => {
+    
       if ( e.target.tagName === 'BUTTON'){
         e.target.disabled = true;
         e.target.className = 'chosen';
@@ -82,7 +84,28 @@ qwerty.addEventListener('click', e => {
 
 // reseting game
 function resetGame() {
-        
+    const buttons = document.querySelectorAll('button');
+    const allLi = document.querySelectorAll('li'); // remove all li on html.
+    missed = 0;
+    allLi.forEach(letter => {
+        letter.remove();
+    });
+    addPhraseToDisplay(randomPhrase); // add a new phrase.
+
+    for (let i = 0 ; i < buttons.length ; i++) {
+        buttons[i].disabled = false;
+        buttons[i].className = '';
+    } 
+
+    const getHearts = document.querySelectorAll('.tries');
+    for (let i = 0 ; i<getHearts.length ; i++) {
+        getHearts[i].firstElementChild.src = 'images/liveHeart.png';
+    }
+
+
+    
+
+
 }
 
 //check if the game has been won or lost
@@ -94,14 +117,14 @@ const checkWin = () => {
         overlay.children[0].textContent = 'You Are Smart !!!';
         overlay.style.display = 'flex';
         overlay.children[1].textContent = 'Continue';
-        
+        resetGame();
         
     }else if(missed > 4){
         overlay.classList.add('lose');
         overlay.children[0].textContent = 'Failed, Another try?';
         overlay.style.display = 'flex';
         overlay.children[1].textContent = 'Restart';
-        
+        resetGame();
     }
 }
 
