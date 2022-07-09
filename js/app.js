@@ -10,7 +10,7 @@ let missed = 0;
 let phrases = [
     'never give up',
     'hard work works',
-    'hard way is way to go',
+    'ez way is the hard way',
     'failure equals learning',
     'jack sparrow',
     'batman is the best'
@@ -85,10 +85,8 @@ const key = qwerty.addEventListener('click', e => {
 // reseting game
 function resetGame() {
     const buttons = document.querySelectorAll('button');
-   
     
-
-   
+    
     
     //reseting hearts
 //     if the user wins then
@@ -103,25 +101,31 @@ function resetGame() {
 //     bring backk all the hearts.
     
     if (letters.length === shows.length) {
-        const allLi = document.querySelectorAll('li'); // remove all li on html.
+        overlay.className = 'start';
+        const allLi = document.querySelectorAll('ul'); // remove all li on html.
+        allLi.innerHTML = '';
         missed = 0;
-        
+
+       
         allLi.forEach(letter => {
             letter.remove();
         });
          // add a new phrase.
-         const newPhrase = getRandomPhraseAsArray(phrases);
+        const newPhrase = getRandomPhraseAsArray(phrases);
         addPhraseToDisplay(newPhrase);
          // reset buttons
         for (let i = 0 ; i < buttons.length ; i++) {
         buttons[i].disabled = false;
         buttons[i].className = '';
-    } 
+        } 
+        
+         //reset hearts
+         const heartLives = document.querySelectorAll('li.tries');
+         for (let i = 0 ; i < heartLives.length ; i++) {
+         heartLives[i].firstChild.src = 'images/liveHeart.png';
+         }
+       
     }
-
-    
-
-
 }
 
 //check if the game has been won or lost
