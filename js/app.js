@@ -85,22 +85,39 @@ const key = qwerty.addEventListener('click', e => {
 // reseting game
 function resetGame() {
     const buttons = document.querySelectorAll('button');
-    const allLi = document.querySelectorAll('li'); // remove all li on html.
-    missed = 0;
+   
     
-    allLi.forEach(letter => {
-        letter.remove();
-    });
-    addPhraseToDisplay(randomPhrase); // add a new phrase.
 
-    for (let i = 0 ; i < buttons.length ; i++) {
+   
+    
+    //reseting hearts
+//     if the user wins then
+//     clear all li on the page
+//     add a new phrase
+//     unselect all buttons
+//     bring back all the hearts.
+//  else if the user loses then
+//     bring back the phrase 
+//     undo any guessed letter
+//     unselect all buttons
+//     bring backk all the hearts.
+    
+    if (letters.length === shows.length) {
+        const allLi = document.querySelectorAll('li'); // remove all li on html.
+        missed = 0;
+        
+        allLi.forEach(letter => {
+            letter.remove();
+        });
+         // add a new phrase.
+         const newPhrase = getRandomPhraseAsArray(phrases);
+        addPhraseToDisplay(newPhrase);
+         // reset buttons
+        for (let i = 0 ; i < buttons.length ; i++) {
         buttons[i].disabled = false;
         buttons[i].className = '';
     } 
-    
-    //reseting hearts
-   
-    
+    }
 
     
 
@@ -108,9 +125,10 @@ function resetGame() {
 }
 
 //check if the game has been won or lost
+const letters = document.getElementsByClassName('letter');
+const shows = document.getElementsByClassName('show');
 const checkWin = () => {
-    const letters = document.getElementsByClassName('letter');
-    const shows = document.getElementsByClassName('show');
+    
     if (letters.length === shows.length) {
         overlay.classList.add('win');
         overlay.children[0].textContent = 'You Are Smart !!!';
