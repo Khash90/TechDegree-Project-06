@@ -96,14 +96,14 @@ function resetGame() {
 //     bring back all the hearts.
 //  else if the user loses then
 //     bring back the phrase 
-//     undo any guessed letter
+//     undo any guessed letters
 //     unselect all buttons
 //     bring backk all the hearts.
     
     if (letters.length === shows.length) {
         overlay.className = 'start';
         const allLi = document.querySelectorAll('ul'); // remove all li on html.
-        allLi.innerHTML = '';
+        // allLi.innerHTML = '';
         missed = 0;
 
        
