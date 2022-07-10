@@ -84,10 +84,6 @@ const key = qwerty.addEventListener('click', e => {
 
 // reseting game
 function resetGame() {
-    const buttons = document.querySelectorAll('button');
-    
-    
-    
     //reseting hearts
 //     if the user wins then
 //     clear all li on the page
@@ -100,20 +96,25 @@ function resetGame() {
 //     unselect all buttons
 //     bring backk all the hearts.
     
-    if (letters.length === shows.length) {
+    
         overlay.className = 'start';
-        const allLi = document.querySelectorAll('ul'); // remove all li on html.
-        // allLi.innerHTML = '';
+        
+        let allLi = phrase.querySelector('ul'); 
+        ul.innerHTML = '';
         missed = 0;
-
        
         allLi.forEach(letter => {
             letter.remove();
         });
+        for (let i = 0; i < allLi.length; i++) {
+            allLi[i].className = "";
+            allLi[i].textContent = "";
+          }
          // add a new phrase.
-        const newPhrase = getRandomPhraseAsArray(phrases);
-        addPhraseToDisplay(newPhrase);
+         const newPhrase = getRandomPhraseAsArray(phrases);
+         addPhraseToDisplay(newPhrase);
          // reset buttons
+         const buttons = document.querySelectorAll('button');
         for (let i = 0 ; i < buttons.length ; i++) {
         buttons[i].disabled = false;
         buttons[i].className = '';
@@ -125,7 +126,7 @@ function resetGame() {
          heartLives[i].firstChild.src = 'images/liveHeart.png';
          }
        
-    }
+    
 }
 
 //check if the game has been won or lost
