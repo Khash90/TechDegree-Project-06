@@ -18,25 +18,26 @@ let phrases = [
 
 
 //return a random phrase from an array
-const getRandomPhraseAsArray = arr => {
+function getRandomPhraseAsArray(arr) {
 
-    const randomNumber = Math.floor(Math.random() * phrases.length);
+    const randomNumber = Math.floor(Math.random() * arr.length);
     let phrase = arr[randomNumber];
-    return phrase;
+    let phraseSplit = phrase.split("");
+    return phraseSplit;
 
 }
 
 //adds the letters of a string to the display
 const randomPhrase = getRandomPhraseAsArray(phrases);
-const addPhraseToDisplay = (arr) => {
+function addPhraseToDisplay(arr) {
 
-      for (let i = 0 ; i < randomPhrase.length ; i++) {
+      for (let i = 0 ; i < arr.length ; i++) {
         let text = arr[i];
         const li = document.createElement('li');
         li.textContent = text ;
         ul.appendChild(li);
 
-        if (randomPhrase[i] === ' ') {
+        if (arr[i] === ' ') {
             li.className = 'space';
         } else {
             li.className = 'letter';
@@ -44,8 +45,6 @@ const addPhraseToDisplay = (arr) => {
       }
 }
 addPhraseToDisplay(randomPhrase);
-
-
 
 //check if a letter is in the phrase
 const checkLetter = Clicked => {
@@ -83,6 +82,7 @@ const key = qwerty.addEventListener('click', e => {
 });
 
 // reseting game
+
 function resetGame() {
     //reseting hearts
 //     if the user wins then
@@ -91,25 +91,17 @@ function resetGame() {
 //     unselect all buttons
 //     bring back all the hearts.
 //  else if the user loses then
-//     bring back the phrase 
+//     bring new phrase 
 //     undo any guessed letters
 //     unselect all buttons
 //     bring backk all the hearts.
     
-    
-        
-        
-        let allLi = phrase.querySelector('ul'); 
-        ul.innerHTML = '';
-        missed = 0;
+        let allLi = document.querySelector('ul'); 
+       
         if (letters.length === shows.length) {
-        // allLi.forEach(letter => {
-        //     letter.remove();
-        // });
-        // for (let i = 0; i < allLi.length; i++) {
-        //     allLi[i].className = "";
-        //     allLi[i].textContent = "";
-        //   }
+            allLi.innerHTML = '';
+            missed = 0;
+
          // add a new phrase.
          const newPhrase = getRandomPhraseAsArray(phrases);
          addPhraseToDisplay(newPhrase);
@@ -127,11 +119,12 @@ function resetGame() {
          }
 
         } else if(missed > 4) {
-            
-
+           allLi.innerHTML = '';
+            missed = 0;
              // add a new phrase.
              const newPhrase = getRandomPhraseAsArray(phrases);
              addPhraseToDisplay(newPhrase);
+
              // reset buttons
              const buttons = document.querySelectorAll('button');
             for (let i = 0 ; i < buttons.length ; i++) {
@@ -145,7 +138,6 @@ function resetGame() {
              heartLives[i].firstChild.src = 'images/liveHeart.png';
              }
         }
-    
 }
 
 //check if the game has been won or lost
