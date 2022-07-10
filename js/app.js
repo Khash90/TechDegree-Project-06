@@ -100,12 +100,12 @@ function resetGame() {
         overlay.className = 'start';
         
         let allLi = phrase.querySelector('ul'); 
-        ul.innerHTML = '';
+       ul.innerHTML = '';
         missed = 0;
-       
-        allLi.forEach(letter => {
-            letter.remove();
-        });
+        if (letters.length === shows.length) {
+        // allLi.forEach(letter => {
+        //     letter.remove();
+        // });
         for (let i = 0; i < allLi.length; i++) {
             allLi[i].className = "";
             allLi[i].textContent = "";
@@ -125,7 +125,27 @@ function resetGame() {
          for (let i = 0 ; i < heartLives.length ; i++) {
          heartLives[i].firstChild.src = 'images/liveHeart.png';
          }
-       
+        } else if(missed > 4) {
+            for (let i = 0; i < allLi.length; i++) {
+                allLi[i].className = "";
+                allLi[i].textContent = "";
+              }
+             // add a new phrase.
+             const newPhrase = getRandomPhraseAsArray(phrases);
+             addPhraseToDisplay(newPhrase);
+             // reset buttons
+             const buttons = document.querySelectorAll('button');
+            for (let i = 0 ; i < buttons.length ; i++) {
+            buttons[i].disabled = false;
+            buttons[i].className = '';
+            } 
+            
+             //reset hearts
+             const heartLives = document.querySelectorAll('li.tries');
+             for (let i = 0 ; i < heartLives.length ; i++) {
+             heartLives[i].firstChild.src = 'images/liveHeart.png';
+             }
+        }
     
 }
 
