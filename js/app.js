@@ -97,19 +97,19 @@ function resetGame() {
 //     bring backk all the hearts.
     
     
-        overlay.className = 'start';
+        
         
         let allLi = phrase.querySelector('ul'); 
-       ul.innerHTML = '';
+        ul.innerHTML = '';
         missed = 0;
         if (letters.length === shows.length) {
         // allLi.forEach(letter => {
         //     letter.remove();
         // });
-        for (let i = 0; i < allLi.length; i++) {
-            allLi[i].className = "";
-            allLi[i].textContent = "";
-          }
+        // for (let i = 0; i < allLi.length; i++) {
+        //     allLi[i].className = "";
+        //     allLi[i].textContent = "";
+        //   }
          // add a new phrase.
          const newPhrase = getRandomPhraseAsArray(phrases);
          addPhraseToDisplay(newPhrase);
@@ -125,11 +125,10 @@ function resetGame() {
          for (let i = 0 ; i < heartLives.length ; i++) {
          heartLives[i].firstChild.src = 'images/liveHeart.png';
          }
+
         } else if(missed > 4) {
-            for (let i = 0; i < allLi.length; i++) {
-                allLi[i].className = "";
-                allLi[i].textContent = "";
-              }
+            
+
              // add a new phrase.
              const newPhrase = getRandomPhraseAsArray(phrases);
              addPhraseToDisplay(newPhrase);
